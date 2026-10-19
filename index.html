@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yağmusluk</title>
+<meta name="description" content="Yağmusluk için küçük bir özür.">
+<meta name="theme-color" content="#1d2140">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito:wght@400;600;800&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Yağmur yağıyor ama her damla bir kalbe dönüşüyor: lacivert yağmurlu açılış, sonra kâğıt gibi açık sayfa */
+:root{
+  --ink:#24223f;        /* yazı */
+  --paper:#f6f1f4;      /* sayfa zemini */
+  --night:#1d2140;      /* yağmurlu gece */
+  --rain:#8fb1ff;       /* yağmur mavisi */
+  --rose:#e2456f;       /* kalp */
+  --blush:#fbd9e3;      /* yumuşak pembe */
+  --muted:#6d6782;
+  --card:#ffffff;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Nunito", "Segoe UI", system-ui, sans-serif;
+  --hand:"Caveat", "Segoe Print", cursive;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(18px, env(safe-area-inset-left, 0px));padding-right:max(18px, env(safe-area-inset-right, 0px))}
+h1,h2{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(30px,5.5vw,48px)}
+.eyebrow{font:800 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin:0 0 12px}
+.hand{font-family:var(--hand)}
+section{padding-block:clamp(56px,9vw,104px)}
+
+/* HERO */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden;padding-top:env(safe-area-inset-top,0px)}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;min-height:min(92svh,820px);display:flex;flex-direction:column;justify-content:center;gap:22px;padding-block:72px}
+.hero .hello{font:600 clamp(26px,4.5vw,36px)/1 var(--hand);color:var(--rain);margin:0}
+.hero h1{font-size:clamp(58px,15vw,168px);letter-spacing:-.02em;line-height:.92}
+.hero h1 span{color:var(--rose)}
+.hero p.lead{font-size:clamp(18px,2.6vw,23px);max-width:30ch;margin:0;color:#e9e6ff}
+.hero .tip{font-size:14px;color:#a9a6cc;margin:0}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:14px 26px;background:var(--rose);color:#fff;font-weight:800;font-size:17px;text-decoration:none;box-shadow:0 8px 24px rgba(226,69,111,.35);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:none;border:2px solid var(--ink)}
+.hero .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+/* MEKTUP */
+.letter{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.paper{background:var(--card);padding:clamp(26px,5vw,48px);border-radius:4px;box-shadow:0 1px 0 #e6dbe2,0 20px 50px -20px rgba(36,34,63,.25);position:relative;transform:rotate(-.6deg)}
+.paper::before{content:"";position:absolute;top:-14px;left:50%;width:110px;height:28px;margin-left:-55px;background:rgba(143,177,255,.45);transform:rotate(2deg)}
+.paper p{margin:0 0 14px;max-width:60ch}
+.paper .to{font:700 34px/1 var(--hand);color:var(--rose);margin-bottom:18px}
+.paper .big{font-family:var(--display);font-size:clamp(22px,3.2vw,28px);line-height:1.3;margin-top:22px}
+.paper .sign{font:700 30px/1 var(--hand);text-align:right;margin:22px 0 0}
+.polaroid{background:var(--card);padding:12px 12px 52px;box-shadow:0 18px 40px -16px rgba(36,34,63,.35);transform:rotate(2.5deg);position:relative;max-width:420px;justify-self:center}
+.polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.polaroid figcaption{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:700 26px/1 var(--hand)}
+
+/* BAKIŞ */
+.look{background:var(--blush)}
+.look .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.look img{width:100%;border-radius:18px;box-shadow:0 24px 60px -24px rgba(36,34,63,.45);cursor:zoom-in}
+.look blockquote{margin:0;font-family:var(--display);font-size:clamp(28px,4.6vw,46px);line-height:1.18;text-wrap:balance}
+.look blockquote em{font-style:normal;color:var(--rose)}
+.look p{color:var(--muted);margin:18px 0 0;max-width:46ch}
+
+/* GALERİ */
+.head{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:32px}
+.head p{margin:0;color:var(--muted);max-width:42ch}
+.gallery{columns:3 260px;column-gap:14px}
+.gallery figure{margin:0 0 14px;break-inside:avoid;position:relative;border-radius:12px;overflow:hidden;background:#e9e1e7}
+.gallery button{all:unset;display:block;cursor:zoom-in;width:100%}
+.gallery button:focus-visible{outline:3px solid var(--rose);outline-offset:-3px}
+.gallery img{width:100%;height:auto;transition:transform .5s}
+.gallery figure:hover img{transform:scale(1.03)}
+.gallery figcaption{position:absolute;left:10px;bottom:8px;font:700 22px/1 var(--hand);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);pointer-events:none}
+.gallery video{width:100%;height:auto;background:#000}
+
+/* KOMİK */
+.funny{background:var(--night);color:#fff}
+.funny .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.monkey{margin:0;position:relative;transform:rotate(-2deg);max-width:460px;width:100%;justify-self:center}
+.monkey video{width:100%;border-radius:14px;box-shadow:0 20px 50px -20px #000;background:#000;aspect-ratio:590/598;object-fit:cover}
+.snd{position:absolute;right:12px;bottom:12px;border:0;border-radius:999px;padding:8px 14px;background:rgba(0,0,0,.6);color:#fff;font-weight:800;font-size:14px}
+.funny h2{color:#fff}
+.funny p{color:#cfcbef;max-width:40ch}
+.funny .wrap.vid{margin-top:clamp(56px,9vw,96px);grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.vid video{width:100%;max-width:400px;justify-self:center;border-radius:18px;background:#000;box-shadow:0 24px 60px -20px #000;aspect-ratio:9/16;object-fit:cover}
+.stamp{display:inline-block;font:700 28px/1 var(--hand);color:var(--rain);border:2px dashed var(--rain);padding:8px 14px;border-radius:10px;transform:rotate(-3deg);margin-top:10px}
+
+/* KEDİLER */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px}
+.cat{margin:0;background:var(--card);border-radius:14px;padding:10px 10px 14px;box-shadow:0 10px 30px -18px rgba(36,34,63,.4);transition:transform .25s}
+.cat:nth-child(odd){transform:rotate(-1.5deg)}
+.cat:nth-child(even){transform:rotate(1.5deg)}
+.cat:hover{transform:rotate(0) scale(1.03)}
+.cat img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px}
+.cat figcaption{font:700 23px/1.1 var(--hand);text-align:center;margin-top:10px}
+
+/* OYUNLAR */
+.games{background:#ece6f3}
+.game{background:var(--card);border-radius:22px;padding:clamp(20px,4vw,36px);box-shadow:0 18px 50px -30px rgba(36,34,63,.5);display:grid;gap:18px}
+.games .stack{display:grid;gap:28px}
+.game h3{font-family:var(--display);font-weight:400;font-size:clamp(24px,3.6vw,32px);margin:0}
+.game .sub{margin:4px 0 0;color:var(--muted)}
+.gbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pill{background:var(--blush);color:var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
+.msg{font:700 26px/1.2 var(--hand);color:var(--rose);min-height:1.2em;margin:0;text-align:center}
+
+/* Hafıza */
+.mem{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1.6vw,14px);max-width:560px;width:100%;margin:0 auto}
+.card{aspect-ratio:1;perspective:700px;border:0;padding:0;background:none}
+.card .in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.card.open .in,.card.done .in{transform:rotateY(180deg)}
+.card .f,.card .b{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.card .f{background:var(--night);display:grid;place-items:center;color:var(--rose);font-size:clamp(22px,5vw,34px)}
+.card .f::after{content:"";position:absolute;inset:6px;border:1.5px dashed rgba(143,177,255,.5);border-radius:8px}
+.card .b{transform:rotateY(180deg)}
+.card .b img{width:100%;height:100%;object-fit:cover}
+.card.done .b{box-shadow:0 0 0 3px var(--rose)}
+
+/* Kalp yakala */
+.catch{position:relative;width:100%;height:clamp(340px,52vh,460px);border-radius:16px;overflow:hidden;background:linear-gradient(#1d2140,#3a3768);touch-action:manipulation}
+.catch canvas{position:absolute;inset:0;width:100%;height:100%}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;color:#fff;background:rgba(29,33,64,.55)}
+.overlay p{margin:0 0 14px;font-size:18px;max-width:30ch}
+.overlay .score{font:700 40px/1.1 var(--hand);color:var(--blush)}
+
+/* Affet */
+.forgive{position:relative;height:260px;border-radius:16px;background:var(--blush);overflow:hidden}
+.forgive .q{position:absolute;top:22px;left:0;right:0;text-align:center;font-family:var(--display);font-size:clamp(22px,4vw,30px);padding:0 16px}
+.forgive .yes,.forgive .no{position:absolute;border:0;border-radius:999px;font-weight:800;padding:12px 26px;transition:transform .25s, left .25s, top .25s}
+.forgive .yes{background:var(--rose);color:#fff;left:22%;top:150px;transform-origin:center}
+.forgive .no{background:#fff;color:var(--ink);left:58%;top:150px;box-shadow:0 4px 14px rgba(36,34,63,.15)}
+
+/* Kediyi sev */
+.pet{border:0;padding:0;background:none;justify-self:center;width:min(280px,100%);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.pet img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:0 0 0 8px var(--blush);transition:transform .12s}
+.pet.wig img{animation:wig .3s}
+@keyframes wig{0%,100%{transform:rotate(0) scale(1)}30%{transform:rotate(-6deg) scale(1.05)}70%{transform:rotate(6deg) scale(1.05)}}
+
+/* Ceza çarkı */
+.slot{background:var(--night);color:#fff;border-radius:16px;min-height:120px;display:grid;place-items:center;text-align:center;padding:20px;font:700 clamp(26px,5vw,36px)/1.15 var(--hand);border:3px dashed var(--rain)}
+.slot.win{color:var(--blush);border-color:var(--rose)}
+
+/* Sevgi ölçer */
+.meter{display:grid;gap:12px}
+.meter input{width:100%;accent-color:var(--rose)}
+.meter .bar{height:22px;border-radius:999px;background:#eee6ee;overflow:hidden}
+.meter .fill{height:100%;width:50%;background:linear-gradient(90deg,var(--rain),var(--rose));border-radius:999px;transition:width .2s}
+.meter output{font:700 28px/1.2 var(--hand);color:var(--rose);text-align:center;display:block;min-height:2.4em}
+
+/* SON */
+.end{background:var(--night);color:#fff;text-align:center;position:relative;overflow:hidden}
+.end h2{font-size:clamp(40px,9vw,96px);line-height:1}
+.end h2 span{color:var(--rose)}
+.end p{color:#cfcbef;max-width:40ch;margin:20px auto 0}
+.end .hand{font-size:34px;color:var(--rain);margin-top:28px}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(15,15,30,.94);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb img{max-height:86svh;max-width:100%;border-radius:10px;object-fit:contain}
+.lb button{position:absolute;border:0;background:rgba(255,255,255,.14);color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;display:grid;place-items:center}
+.lb .x{top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px))}
+.lb .pv{left:max(10px,env(safe-area-inset-left,0px));top:50%;margin-top:-24px}
+.lb .nx{right:max(10px,env(safe-area-inset-right,0px));top:50%;margin-top:-24px}
+
+/* Kalp patlaması */
+.pop{position:fixed;z-index:60;pointer-events:none;font-size:26px;color:var(--rose);animation:pop 1.4s ease-out forwards}
+@keyframes pop{0%{transform:translate(0,0) scale(.5);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.3);opacity:0}}
+
+@media (max-width:760px){
+  .letter,.look .wrap,.funny .wrap,.funny .wrap.vid{grid-template-columns:minmax(0,1fr)}
+  .polaroid{max-width:300px}
+  .forgive .yes{left:12%}
+  .forgive .no{left:56%}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="hello">sevgilim,</p>
+    <h1>Yağmus<span>luk</span></h1>
+    <p class="lead">Özür dilerim. Ve seni her şeyden çok seviyorum.</p>
+    <div class="row">
+      <a class="btn" href="#mektup">Mektubunu oku ♥</a>
+      <p class="tip">Ekrana dokun, yağmur kalbe dönüşsün.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="mektup">
+    <div class="wrap letter">
+      <article class="paper">
+        <p class="to">Yağmusluğum,</p>
+        <p>Kavga ettik ve seni üzdüm. Bunun için gerçekten çok özür dilerim. Kimin haklı olduğunun hiçbir önemi yok, çünkü hiçbir şey seni üzmeye değmez.</p>
+        <p>Sana bunu düzgünce söylemek istedim, o yüzden bu küçük siteyi senin için yaptım. İçinde bizim fotoğraflarımız var, biraz saçmalık var, birkaç üzgün kedi var ve sana özel oyunlar var.</p>
+        <p>Seninle tartışmak bile beni senden uzaklaştırmıyor. Sadece sana daha iyi davranmam gerektiğini hatırlatıyor.</p>
+        <p class="big">Seni her şeyden çok seviyorum. Her şeyden.</p>
+        <p class="sign">Kerem</p>
+      </article>
+      <figure class="polaroid">
+        <img src="foto/g24.jpg" alt="Yağmur ile Kerem kafa kafaya" loading="lazy">
+        <figcaption>biz ♥</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="look" id="bakis">
+    <div class="wrap">
+      <img id="lookImg" src="foto/banabakarken-k.jpg" alt="Yağmur ağacın altında bana bakarken" loading="lazy">
+      <div>
+        <p class="eyebrow">bu fotoğraf</p>
+        <blockquote>Hiç kimse bana <em>senin baktığın gibi</em> bakmadı.</blockquote>
+        <p>Bu fotoğrafa her baktığımda aynı şeyi düşünüyorum. O bakışı kaybetmek istemiyorum. Bir daha seni üzmemek için elimden geleni yapacağım.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="biz">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="eyebrow">bizim albüm</p>
+          <h2>En sevdiğim şey: biz</h2>
+        </div>
+        <p>Fotoğrafa dokun, büyüsün. Telefonda kaydırarak ilerleyebilirsin.</p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+
+  <section class="funny" id="komik">
+    <div class="wrap">
+      <figure class="monkey">
+        <video id="monkey" src="foto/maymun.mp4" poster="foto/maymun-poster.jpg" autoplay muted loop playsinline></video>
+        <button type="button" id="monkeySnd" class="snd">🔊 Sesi aç</button>
+      </figure>
+      <div>
+        <p class="eyebrow" style="color:var(--rain)">şu an ben</p>
+        <h2>Sen bana küsünce ben:</h2>
+        <p>Havalı havalı yürüyordum, sonra sen küstün. Ayağım kaydı, düştüm. Kalkamıyorum. Beni sadece senin bir "tamam barıştık"ın kaldırabilir.</p>
+        <span class="stamp">küslüğün 1. saati</span>
+      </div>
+    </div>
+    <div class="wrap vid">
+      <div>
+        <p class="eyebrow" style="color:var(--rain)">biz, hareketli hali</p>
+        <h2>Bu videoyu izleyip bana küs kalamazsın</h2>
+        <p>Sesi aç ve izle. Gülmeden bitirebilirsen küs kalmaya devam edebilirsin. Anlaştık mı?</p>
+      </div>
+      <video src="foto/video.mp4" poster="foto/video-poster.jpg" controls playsinline preload="metadata"></video>
+    </div>
+  </section>
+
+  <section id="kediler">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="eyebrow">evden son durum</p>
+          <h2>Sen küsünce evdeki herkes</h2>
+        </div>
+        <p>Kimse iyi değil. Lütfen bu kedilerin hatırına affet.</p>
+      </div>
+      <div class="cats">
+        <figure class="cat"><img src="kedi/k0.jpg" alt="Ağlarken başparmak kaldıran kedi" loading="lazy"><figcaption>"iyiyim ya" (değilim)</figcaption></figure>
+        <figure class="cat"><img src="kedi/k1.jpg" alt="Gözleri dolu gülümseyen kedi" loading="lazy"><figcaption>seni özledim</figcaption></figure>
+        <figure class="cat"><img src="kedi/k2.jpg" alt="Battaniyeye sarılmış üzgün kedi" loading="lazy"><figcaption>battaniyede seni bekliyorum</figcaption></figure>
+        <figure class="cat"><img src="kedi/k3.jpg" alt="Kapının arkasından bakan üzgün yavru kedi" loading="lazy"><figcaption>köşede pişmanlık</figcaption></figure>
+        <figure class="cat"><img src="kedi/k4.jpg" alt="Kafasında pembe fiyonk olan hamster" loading="lazy"><figcaption>kedi değil ama o da üzgün</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="games" id="oyunlar">
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <p class="eyebrow">sana özel</p>
+          <h2>Biraz oynayalım mı?</h2>
+        </div>
+        <p>Dört küçük oyun. Hepsinin sonunda aynı şey çıkıyor, haberin olsun.</p>
+      </div>
+
+      <div class="stack">
+        <!-- 1. Affet -->
+        <div class="game">
+          <div>
+            <h3>Beni affettin mi?</h3>
+            <p class="sub">Dürüst ol. Ama "hayır"a basmak biraz zor olabilir.</p>
+          </div>
+          <div class="forgive" id="forgive">
+            <p class="q" id="fq">Yağmusluk, beni affediyor musun?</p>
+            <button class="yes" id="fYes" type="button">Evet ♥</button>
+            <button class="no" id="fNo" type="button">Hayır</button>
+          </div>
+          <p class="msg" id="fMsg" aria-live="polite"></p>
+        </div>
+
+        <!-- Kediyi sev -->
+        <div class="game">
+          <div class="gbar">
+            <div>
+              <h3>Üzgün kediyi sev</h3>
+              <p class="sub">Kediye dokunarak sev. Belki o da affeder.</p>
+            </div>
+            <span class="pill" id="petInfo">Sevgi: 0 / 20</span>
+          </div>
+          <button type="button" class="pet" id="pet" aria-label="Kediyi sev"><img id="petImg" src="kedi/k2.jpg" alt="Battaniyeye sarılmış üzgün kedi"></button>
+          <p class="msg" id="petMsg" aria-live="polite">çok üzgün...</p>
+        </div>
+
+        <!-- Ceza çarkı -->
+        <div class="game">
+          <div>
+            <h3>Kerem'in ceza çarkı</h3>
+            <p class="sub">Beni üzdün, ceza alıyorum. Çevir, çıkan cezayı kabul ediyorum. Söz.</p>
+          </div>
+          <div class="slot" id="slot" aria-live="polite">Çevirmek için bas</div>
+          <p style="margin:0;text-align:center"><button class="btn" id="spin" type="button">Çarkı çevir</button></p>
+        </div>
+
+        <!-- 2. Hafıza -->
+        <div class="game">
+          <div class="gbar">
+            <div>
+              <h3>Hafıza oyunu</h3>
+              <p class="sub">Aynı fotoğrafları eşleştir.</p>
+            </div>
+            <div class="row" style="display:flex;gap:10px;align-items:center">
+              <span class="pill" id="mMoves">Hamle: 0</span>
+              <button class="btn ghost" id="mReset" type="button" style="padding:8px 16px;font-size:14px">Baştan</button>
+            </div>
+          </div>
+          <div class="mem" id="mem"></div>
+          <p class="msg" id="mMsg" aria-live="polite"></p>
+        </div>
+
+        <!-- 3. Kalp yakala -->
+        <div class="game">
+          <div class="gbar">
+            <div>
+              <h3>Kalpleri yakala</h3>
+              <p class="sub">Kalplere dokun. Yağmur damlalarına dokunursan ıslanırsın, puan gider.</p>
+            </div>
+            <span class="pill" id="cInfo">Kalp: 0 · 25 sn</span>
+          </div>
+          <div class="catch" id="catch">
+            <canvas id="cCanvas"></canvas>
+            <div class="overlay" id="cOver">
+              <div>
+                <p>25 saniyede ne kadar kalp toplayabilirsin? Hepsi senin zaten.</p>
+                <button class="btn" id="cStart" type="button">Başla</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Sevgi ölçer -->
+        <div class="game">
+          <div>
+            <h3>Seni ne kadar seviyorum?</h3>
+            <p class="sub">Çubuğu sağa doğru çek ve bak.</p>
+          </div>
+          <div class="meter">
+            <input type="range" id="love" min="0" max="100" value="10" aria-label="Sevgi ölçer">
+            <div class="bar"><div class="fill" id="loveFill"></div></div>
+            <output id="loveOut" for="love">Biraz mı? Çek bakalım.</output>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="end" id="son">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--rain)">son söz</p>
+      <h2>Seni her şeyden<br>çok <span>seviyorum.</span></h2>
+      <p>Özür dilerim, Yağmusluk. Kavgalar geçer, sen kalırsın. Ben de hep yanında kalırım.</p>
+      <p class="hand">barışalım mı? ♥</p>
+      <p><button class="btn" id="endHeart" type="button">Barışalım ♥</button></p>
+    </div>
+  </section>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fotoğraf">
+  <img id="lbImg" alt="">
+  <button class="x" id="lbX" type="button" aria-label="Kapat">✕</button>
+  <button class="pv" id="lbP" type="button" aria-label="Önceki">‹</button>
+  <button class="nx" id="lbN" type="button" aria-label="Sonraki">›</button>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function shuffle(a){ for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function heartPath(ctx, x, y, s){
+    ctx.beginPath();
+    ctx.moveTo(x, y + s * 0.3);
+    ctx.bezierCurveTo(x, y, x - s * 0.5, y, x - s * 0.5, y + s * 0.3);
+    ctx.bezierCurveTo(x - s * 0.5, y + s * 0.6, x, y + s * 0.8, x, y + s);
+    ctx.bezierCurveTo(x, y + s * 0.8, x + s * 0.5, y + s * 0.6, x + s * 0.5, y + s * 0.3);
+    ctx.bezierCurveTo(x + s * 0.5, y, x, y, x, y + s * 0.3);
+    ctx.closePath();
+  }
+  function burst(x, y, n){
+    for (var i = 0; i < (n || 14); i++) {
+      var h = document.createElement('span');
+      h.className = 'pop'; h.textContent = '♥';
+      var a = Math.random() * Math.PI * 2, d = 60 + Math.random() * 120;
+      h.style.left = x + 'px'; h.style.top = y + 'px';
+      h.style.setProperty('--dx', Math.cos(a) * d + 'px');
+      h.style.setProperty('--dy', (Math.sin(a) * d - 60) + 'px');
+      h.style.fontSize = (16 + Math.random() * 22) + 'px';
+      document.body.appendChild(h);
+      setTimeout(function(el){ return function(){ el.remove(); }; }(h), 1500);
+    }
+  }
+
+  /* ---------- Hero yağmuru ---------- */
+  (function(){
+    var c = document.getElementById('rain'), ctx = c.getContext('2d'), hero = c.parentNode;
+    var W, H, dpr, drops = [], hearts = [];
+    function size(){
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = hero.clientWidth; H = hero.clientHeight;
+      c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = reduce ? 40 : Math.round(W * H / 9000);
+      drops = [];
+      for (var i = 0; i < n; i++) drops.push(newDrop(true));
+    }
+    function newDrop(any){ return { x: Math.random() * W, y: any ? Math.random() * H : -20, l: 10 + Math.random() * 18, v: 4 + Math.random() * 6, o: .15 + Math.random() * .4 }; }
+    function addHeart(x, y){ hearts.push({ x: x, y: y, s: 14 + Math.random() * 18, v: .6 + Math.random(), life: 1 }); }
+    hero.addEventListener('pointerdown', function(e){
+      if (e.target.closest('a,button')) return;
+      var r = hero.getBoundingClientRect();
+      for (var i = 0; i < 6; i++) addHeart(e.clientX - r.left + (Math.random() - .5) * 60, e.clientY - r.top + (Math.random() - .5) * 40);
+    });
+    function tick(){
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineCap = 'round'; ctx.lineWidth = 1.4;
+      for (var i = 0; i < drops.length; i++) {
+        var d = drops[i];
+        ctx.strokeStyle = 'rgba(143,177,255,' + d.o + ')';
+        ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(d.x - 1.5, d.y + d.l); ctx.stroke();
+        if (!reduce) d.y += d.v;
+        if (d.y > H) {
+          if (Math.random() < .05) addHeart(d.x, H - 30 - Math.random() * H * .5);
+          drops[i] = newDrop(false);
+        }
+      }
+      for (var j = hearts.length - 1; j >= 0; j--) {
+        var h = hearts[j];
+        h.y -= h.v; h.life -= .008;
+        ctx.globalAlpha = Math.max(h.life, 0);
+        ctx.fillStyle = '#e2456f'; heartPath(ctx, h.x, h.y, h.s); ctx.fill();
+        ctx.globalAlpha = 1;
+        if (h.life <= 0) hearts.splice(j, 1);
+      }
+      requestAnimationFrame(tick);
+    }
+    window.addEventListener('resize', size);
+    size(); tick();
+  })();
+
+  /* ---------- Galeri + lightbox ---------- */
+  var G = [
+    [22, 'bu surat ♥'], [1, ''], [18, ''], [16, 'öpücük'], [8, ''], [2, ''], [26, 'dil çıkarma yarışı'],
+    [19, ''], [5, 'havalı'], [20, ''], [7, ''], [29, ''], [13, 'hayalz döner günü'], [4, ''],
+    [17, ''], [21, ''], [6, ''], [28, ''], [9, ''], [12, ''], [23, '']
+  ];
+  var gal = document.getElementById('gallery');
+  G.forEach(function(it, k){
+    var f = document.createElement('figure');
+    f.innerHTML = '<button type="button" aria-label="Fotoğrafı büyüt"><img src="foto/g' + pad(it[0]) + '.jpg" alt="Bizim bir fotoğrafımız" loading="lazy"></button>' + (it[1] ? '<figcaption>' + it[1] + '</figcaption>' : '');
+    f.querySelector('button').addEventListener('click', function(){ openLb(k); });
+    gal.appendChild(f);
+  });
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), cur = 0, list = G.map(function(x){ return x[0]; });
+  function show(){ lbImg.src = typeof list[cur] === 'string' ? list[cur] : 'foto/p' + pad(list[cur]) + '.jpg'; }
+  function openLb(k){ cur = k; show(); lb.hidden = false; document.body.style.overflow = 'hidden'; document.getElementById('lbX').focus(); }
+  function closeLb(){ lb.hidden = true; document.body.style.overflow = ''; }
+  function step(d){ cur = (cur + d + list.length) % list.length; show(); }
+  document.getElementById('lbX').onclick = closeLb;
+  document.getElementById('lbP').onclick = function(){ step(-1); };
+  document.getElementById('lbN').onclick = function(){ step(1); };
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb(); else if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1);
+  });
+  var sx = null;
+  lb.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function(e){ if (sx === null) return; var dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1); sx = null; });
+  document.getElementById('lookImg').addEventListener('click', function(){ list = ['foto/banabakarken.jpg']; openLb(0); });
+  document.getElementById('lbX').addEventListener('click', function(){ list = G.map(function(x){ return x[0]; }); });
+
+  /* ---------- Affet oyunu ---------- */
+  (function(){
+    var box = document.getElementById('forgive'), yes = document.getElementById('fYes'), no = document.getElementById('fNo'),
+        q = document.getElementById('fq'), msg = document.getElementById('fMsg'), tries = 0, done = false;
+    var lines = ['Emin misin?', 'Bi daha düşün ama', 'Yağmusluk lütfen', 'Kediler ağlıyor bak', 'Maymun puroyu bıraktı', 'Son şansın...', 'Tamam, evet o zaman ♥'];
+    function run(e){
+      if (done) return;
+      if (tries >= lines.length - 1) return;
+      if (e) e.preventDefault();
+      tries++;
+      no.textContent = lines[Math.min(tries, lines.length - 1)];
+      var bw = box.clientWidth - no.offsetWidth - 12, bh = box.clientHeight - no.offsetHeight - 12;
+      no.style.left = Math.max(12, Math.random() * bw) + 'px';
+      no.style.top = Math.max(80, Math.random() * bh) + 'px';
+      yes.style.transform = 'scale(' + (1 + tries * .14) + ')';
+    }
+    function win(){
+      if (done) return; done = true;
+      q.textContent = 'Biliyordum ♥';
+      yes.hidden = true; no.hidden = true;
+      msg.textContent = 'Seni her şeyden çok seviyorum, Yağmusluk.';
+      var r = box.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 28);
+    }
+    no.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse') run(); });
+    no.addEventListener('click', function(e){ if (tries >= lines.length - 1) win(); else run(e); });
+    yes.addEventListener('click', win);
+  })();
+
+  /* ---------- Maymun videosu ---------- */
+  (function(){
+    var v = document.getElementById('monkey'), b = document.getElementById('monkeySnd');
+    function toggle(){
+      v.muted = !v.muted; b.textContent = v.muted ? '🔊 Sesi aç' : '🔇 Sesi kapat';
+      if (!v.muted) { v.currentTime = 0; v.play().catch(function(){}); }
+    }
+    b.addEventListener('click', toggle);
+    v.addEventListener('click', toggle);
+    if (reduce) v.pause();
+  })();
+
+  /* ---------- Kediyi sev ---------- */
+  (function(){
+    var b = document.getElementById('pet'), img = document.getElementById('petImg'), info = document.getElementById('petInfo'), msg = document.getElementById('petMsg'), n = 0, MAX = 20;
+    var lines = { 1: 'hmm...', 4: 'biraz daha', 8: 'kulağının arkası da', 11: 'mırr', 15: 'neredeyse affetti', 20: 'Kedi mutluluktan ağlıyor. Sıra sende Yağmusluk ♥' };
+    b.addEventListener('click', function(e){
+      if (n >= MAX) { burst(e.clientX, e.clientY, 8); return; }
+      n++; info.textContent = 'Sevgi: ' + n + ' / ' + MAX;
+      b.classList.remove('wig'); void b.offsetWidth; b.classList.add('wig');
+      if (lines[n]) msg.textContent = lines[n];
+      if (n === 8) img.src = 'kedi/k3.jpg';
+      if (n === 15) img.src = 'kedi/k0.jpg';
+      if (n === MAX) { img.src = 'kedi/k1.jpg'; burst(e.clientX, e.clientY, 26); } else burst(e.clientX, e.clientY, 2);
+    });
+  })();
+
+  /* ---------- Ceza çarkı ---------- */
+  (function(){
+    var slot = document.getElementById('slot'), btn = document.getElementById('spin'), busy = false;
+    var C = [
+      '1 hafta bulaşık benden', 'Hayalz döner benden, sınırsız', '30 dakika masaj', '1 gün boyunca her konuda haklısın',
+      'Attığın tüm TikTokları izleyip yorum yapacağım', 'Sabahlığımla maymun pozu verip foto atacağım', 'Seni istediğin yere yemeğe götürüyorum',
+      'Bütün gün sana "Yağmusluğum" diye hitap edeceğim', 'Film seçimi 1 ay boyunca sende', 'Sınırsız sarılma, itiraz yok'
+    ];
+    btn.addEventListener('click', function(){
+      if (busy) return; busy = true; slot.classList.remove('win'); btn.disabled = true;
+      var k = 0, total = 22 + Math.floor(Math.random() * 10), i = Math.floor(Math.random() * C.length);
+      (function next(){
+        i = (i + 1) % C.length; slot.textContent = C[i]; k++;
+        if (k < total) setTimeout(next, 40 + k * k * .35);
+        else {
+          slot.classList.add('win'); busy = false; btn.disabled = false; btn.textContent = 'Bir daha çevir';
+          var r = slot.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 16);
+        }
+      })();
+    });
+  })();
+
+  /* ---------- Hafıza oyunu ---------- */
+  (function(){
+    var IDS = ['00', '06', '07', '15', '17', '18', '22', '26'];
+    var mem = document.getElementById('mem'), mv = document.getElementById('mMoves'), msg = document.getElementById('mMsg');
+    var first, lock, moves, found;
+    function build(){
+      mem.innerHTML = ''; first = null; lock = false; moves = 0; found = 0; mv.textContent = 'Hamle: 0'; msg.textContent = '';
+      shuffle(IDS.concat(IDS)).forEach(function(id){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'card'; b.dataset.id = id; b.setAttribute('aria-label', 'Kart');
+        b.innerHTML = '<div class="in"><div class="f">♥</div><div class="b"><img src="thumb/t' + id + '.jpg" alt=""></div></div>';
+        b.addEventListener('click', function(){ flip(b); });
+        mem.appendChild(b);
+      });
+    }
+    function flip(b){
+      if (lock || b.classList.contains('open') || b.classList.contains('done')) return;
+      b.classList.add('open');
+      if (!first) { first = b; return; }
+      moves++; mv.textContent = 'Hamle: ' + moves;
+      if (first.dataset.id === b.dataset.id) {
+        first.classList.add('done'); b.classList.add('done'); first = null; found++;
+        if (found === IDS.length) {
+          msg.textContent = moves + ' hamlede bitirdin! Kalbimi de böyle buldun zaten ♥';
+          var r = mem.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 24);
+        }
+      } else {
+        lock = true; var a = first; first = null;
+        setTimeout(function(){ a.classList.remove('open'); b.classList.remove('open'); lock = false; }, 800);
+      }
+    }
+    document.getElementById('mReset').onclick = build;
+    build();
+  })();
+
+  /* ---------- Kalp yakala ---------- */
+  (function(){
+    var wrap = document.getElementById('catch'), c = document.getElementById('cCanvas'), ctx = c.getContext('2d'),
+        over = document.getElementById('cOver'), info = document.getElementById('cInfo');
+    var W, H, items = [], fx = [], score = 0, left = 25, running = false, last = 0, spawnT = 0, endAt = 0;
+    function size(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = wrap.clientWidth; H = wrap.clientHeight;
+      c.width = W * dpr; c.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function spawn(){
+      var heart = Math.random() < .68;
+      items.push({ x: 24 + Math.random() * (W - 48), y: -30, s: heart ? 30 + Math.random() * 14 : 24, v: 1.6 + Math.random() * 1.8 + (25 - left) * .06, heart: heart });
+    }
+    function draw(it){
+      if (it.heart) { ctx.fillStyle = '#e2456f'; heartPath(ctx, it.x, it.y - it.s / 2, it.s); ctx.fill(); }
+      else {
+        ctx.fillStyle = '#8fb1ff';
+        ctx.beginPath(); ctx.moveTo(it.x, it.y - it.s * .7);
+        ctx.quadraticCurveTo(it.x + it.s * .55, it.y + it.s * .1, it.x, it.y + it.s * .45);
+        ctx.quadraticCurveTo(it.x - it.s * .55, it.y + it.s * .1, it.x, it.y - it.s * .7); ctx.fill();
+      }
+    }
+    function loop(t){
+      if (!running) return;
+      var dt = Math.min((t - last) / 16.7, 3); last = t;
+      left = Math.max(0, Math.ceil((endAt - t) / 1000));
+      spawnT -= dt; if (spawnT <= 0) { spawn(); spawnT = 22 - Math.min(12, (25 - left) * .5); }
+      ctx.clearRect(0, 0, W, H);
+      for (var i = items.length - 1; i >= 0; i--) { var it = items[i]; it.y += it.v * dt; draw(it); if (it.y > H + 40) items.splice(i, 1); }
+      for (var j = fx.length - 1; j >= 0; j--) {
+        var f = fx[j]; f.y -= .8 * dt; f.a -= .02 * dt;
+        ctx.globalAlpha = Math.max(f.a, 0); ctx.fillStyle = f.col; ctx.font = '700 26px Caveat, cursive'; ctx.textAlign = 'center'; ctx.fillText(f.t, f.x, f.y);
+        ctx.globalAlpha = 1; if (f.a <= 0) fx.splice(j, 1);
+      }
+      info.textContent = 'Kalp: ' + score + ' · ' + left + ' sn';
+      if (t >= endAt) return finish();
+      requestAnimationFrame(loop);
+    }
+    function finish(){
+      running = false; items = [];
+      var text = score >= 25 ? 'Kalbimin hepsini topladın, zaten hep senindi.' : score >= 12 ? 'Bayağı kalp topladın. Hepsi senin için.' : 'Az topladın ama sorun değil, kalbim zaten sende.';
+      over.innerHTML = '<div><p class="score">' + score + ' kalp ♥</p><p>' + text + '</p><button class="btn" type="button" id="cAgain">Tekrar oyna</button></div>';
+      over.hidden = false;
+      document.getElementById('cAgain').onclick = start;
+    }
+    function start(){
+      size(); items = []; fx = []; score = 0; left = 25; spawnT = 0; over.hidden = true; running = true;
+      last = performance.now(); endAt = last + 25000; requestAnimationFrame(loop);
+    }
+    wrap.addEventListener('pointerdown', function(e){
+      if (!running) return;
+      var r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      for (var i = items.length - 1; i >= 0; i--) {
+        var it = items[i];
+        if (Math.hypot(it.x - x, it.y - y) < it.s * .75 + 10) {
+          items.splice(i, 1);
+          if (it.heart) { score++; fx.push({ x: x, y: y, t: '+1 ♥', a: 1, col: '#fbd9e3' }); }
+          else { score = Math.max(0, score - 2); fx.push({ x: x, y: y, t: 'ıslandın! -2', a: 1, col: '#8fb1ff' }); }
+          break;
+        }
+      }
+    });
+    document.getElementById('cStart').onclick = start;
+    window.addEventListener('resize', function(){ if (running) size(); });
+    size();
+  })();
+
+  /* ---------- Sevgi ölçer ---------- */
+  (function(){
+    var r = document.getElementById('love'), fill = document.getElementById('loveFill'), out = document.getElementById('loveOut'), shown = false;
+    var steps = [
+      [0, 'Biraz mı? Çek bakalım.'], [20, 'Yağmurdaki damlalar kadar'], [40, 'Gökyüzündeki yıldızlar kadar'],
+      [60, 'Hayalz dönerden bile çok'], [80, 'Ölçmeye çubuk yetmiyor'], [96, 'Sonsuz. Her şeyden çok. ♥']
+    ];
+    function upd(){
+      var v = +r.value, t = steps[0][1];
+      steps.forEach(function(s){ if (v >= s[0]) t = s[1]; });
+      fill.style.width = Math.max(v, 4) + '%'; out.textContent = t;
+      if (v >= 96 && !shown) { shown = true; var b = r.getBoundingClientRect(); burst(b.right - 20, b.top, 20); }
+      if (v < 90) shown = false;
+    }
+    r.addEventListener('input', upd); upd();
+  })();
+
+  /* ---------- Son ---------- */
+  document.getElementById('endHeart').addEventListener('click', function(e){
+    burst(e.clientX, e.clientY, 36);
+    this.textContent = 'Seni seviyorum ♥';
+  });
+})();
+</script>
+</body>
+</html>
