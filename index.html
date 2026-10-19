@@ -175,6 +175,15 @@ section{padding-block:clamp(56px,9vw,104px)}
 .lb .nx{right:max(10px,env(safe-area-inset-right,0px));top:50%;margin-top:-24px}
 
 /* Kalp patlaması */
+/* Şarkı butonu */
+.music{position:fixed;z-index:40;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;border:2px solid var(--rose);border-radius:999px;padding:10px 16px;background:var(--night);color:#fff;font-weight:800;font-size:14px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.music .eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
+.music .eq i{width:3px;height:4px;background:var(--rose);border-radius:2px}
+.music.on .eq i{animation:eq .9s ease-in-out infinite}
+.music.on .eq i:nth-child(2){animation-delay:.2s}.music.on .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+.music small{font-weight:600;color:#bdb9e0}
+
 .pop{position:fixed;z-index:60;pointer-events:none;font-size:26px;color:var(--rose);animation:pop 1.4s ease-out forwards}
 @keyframes pop{0%{transform:translate(0,0) scale(.5);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.3);opacity:0}}
 
@@ -400,6 +409,9 @@ section{padding-block:clamp(56px,9vw,104px)}
   </section>
 </main>
 
+<audio id="song" src="muzik/ve-ben.mp3" loop preload="auto"></audio>
+<button class="music" id="musicBtn" type="button" aria-label="Şarkıyı aç veya kapat"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="musicTxt">Şarkıyı aç</span></button>
+
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Fotoğraf">
   <img id="lbImg" alt="">
   <button class="x" id="lbX" type="button" aria-label="Kapat">✕</button>
@@ -541,13 +553,60 @@ section{padding-block:clamp(56px,9vw,104px)}
     yes.addEventListener('click', win);
   })();
 
+  /* ---------- Şarkı: video sesli oynarken durur, video bitince devam eder ---------- */
+  var music = (function(){
+    var a = document.getElementById('song'), btn = document.getElementById('musicBtn'), txt = document.getElementById('musicTxt');
+    var wanted = true, holds = {};
+    a.volume = .7;
+    function held(){ for (var k in holds) if (holds[k]) return true; return false; }
+    function ui(){
+      var on = !a.paused;
+      btn.classList.toggle('on', on);
+      txt.innerHTML = on ? 'Ve Ben <small>· Yaşlı Amca</small>' : (wanted && held() ? 'Video oynuyor, şarkı bekliyor' : 'Şarkıyı aç');
+    }
+    function apply(){
+      if (wanted && !held()) { var p = a.play(); if (p) p.catch(function(){}); }
+      else a.pause();
+      ui();
+    }
+    a.addEventListener('play', ui); a.addEventListener('pause', ui);
+    btn.addEventListener('click', function(){ wanted = a.paused ? true : false; if (wanted) holds = {}; apply(); });
+    // Tarayıcılar otomatik sesi engeller: ilk dokunuşta şarkıyı başlat
+    function first(e){
+      if (e.target.closest('video, #monkeySnd, #musicBtn')) return;
+      document.removeEventListener('pointerdown', first, true);
+      document.removeEventListener('keydown', first, true);
+      apply();
+    }
+    document.addEventListener('pointerdown', first, true);
+    document.addEventListener('keydown', first, true);
+    apply();
+    return { hold: function(key, on){ holds[key] = on; apply(); } };
+  })();
+
+  /* Sizin video: oynarken şarkı durur */
+  (function(){
+    var v = document.querySelector('.vid video');
+    v.addEventListener('play', function(){ if (!v.muted) music.hold('video', true); });
+    v.addEventListener('pause', function(){ music.hold('video', false); });
+    v.addEventListener('ended', function(){ music.hold('video', false); });
+    v.addEventListener('volumechange', function(){ if (!v.paused) music.hold('video', !v.muted); });
+  })();
+
   /* ---------- Maymun videosu ---------- */
   (function(){
     var v = document.getElementById('monkey'), b = document.getElementById('monkeySnd');
     function toggle(){
       v.muted = !v.muted; b.textContent = v.muted ? '🔊 Sesi aç' : '🔇 Sesi kapat';
+      music.hold('maymun', !v.muted);
+      v.loop = v.muted;
       if (!v.muted) { v.currentTime = 0; v.play().catch(function(){}); }
     }
+    // Sesli tur bitince tekrar sessiz döngüye geç, şarkı devam etsin
+    v.addEventListener('ended', function(){
+      v.muted = true; v.loop = true; b.textContent = '🔊 Sesi aç';
+      music.hold('maymun', false); v.play().catch(function(){});
+    });
     b.addEventListener('click', toggle);
     v.addEventListener('click', toggle);
     if (reduce) v.pause();
